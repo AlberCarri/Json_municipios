@@ -5,7 +5,19 @@ import sys
 
 try:
     
-    #def mostrar_coordenadas():
+    def mostrar_coordenadas(datos):
+        nom_municipio=input("Introduce el nombre de un municipio: ")
+
+        for mun in datos:
+            if mun["Municipio"]==nom_municipio:
+                longitud=mun['Longitud']
+                latitud=mun['Latitud']
+        latitud=latitud.replace(",",".")
+        longitud=longitud.replace(",",".")
+
+        print("http://www.openstreetmap.org/#map=20/%s/%s" %(latitud,longitud))
+        input("Pulse para continuar...")
+
 
     def mostrar_municipios(datos):
         nom_provincia=input("Introduce el nombre de la provincia: ")
@@ -35,10 +47,13 @@ try:
     def num_municipios(datos):
         nom_provincia=input("Introduce el nombre de la provincia: ")
        
+        contador=0
+
         for prov in datos:
             if prov["Provincia"]==nom_provincia:
-                numero=len(prov)
-        print("Numero de municipios en la provincia: ",numero)
+                contador=contador+1
+        print("Numero de municipios en la provincia: ",contador)
+        input("Pulse para continuar...")
 
     def mostrar_municipio_menor_habitantes(datos):
         num_habitantes=int(input("Introduce el número de habitantes: "))
@@ -67,6 +82,7 @@ try:
 #Creo el menú con el que el usuario va a interactuar
     while True:
         #Poner un cls, para borrar toda la pantalls
+        os.system("cls")  
 
         print("1. Mostrar latitud y longitud de un Municipio")
         print("2. Mostrar Municipios de una Provincia")
@@ -78,10 +94,12 @@ try:
         print("8. Salir")
 
         opc = int(input("Seleccione una opción: "))
+        os.system("cls")  
+
         #Ahora se deben de especificar las diferentes opciones
         if opc == 1:
-            #mostrar_coordenadas()
-            print("En obras")
+            mostrar_coordenadas(datos)
+            
         elif opc == 2:
             mostrar_municipios(datos)
         elif opc == 3:
