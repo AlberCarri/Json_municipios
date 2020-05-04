@@ -7,12 +7,54 @@ try:
     
     #def mostrar_coordenadas():
 
-    def mostrar_municipios():
+    def mostrar_municipios(datos):
+        nom_provincia=input("Introduce el nombre de la provincia: ")
+
+        for prov in datos:
+            if prov["Provincia"]==nom_provincia:
+                print(prov['Municipio'])
+        input("Pulse para continuar...")
+
+
+    def mostrar_provincia(datos):
+        nom_municipio=input("Introduce el nombre del municipio: ")
         
+        for mun in datos:
+            if mun["Municipio"]==nom_municipio:
+                print("Provincia: %s"%mun['Provincia'])
+        input("Pulse para continuar...")
 
+    def mostrar_municipios_mancomunidad(datos):
+        nom_mancomunidad=input("Introduce el nombre de la mancomunidad: ")
 
+        for man in datos:
+            if man["Mancomunidades"]==nom_mancomunidad:
+                print(man['Municipio'])
+        input("Pulse para continuar...")
 
+    def num_municipios(datos):
+        nom_provincia=input("Introduce el nombre de la provincia: ")
+       
+        for prov in datos:
+            if prov["Provincia"]==nom_provincia:
+                numero=len(prov)
+        print("Numero de municipios en la provincia: ",numero)
 
+    def mostrar_municipio_menor_habitantes(datos):
+        num_habitantes=int(input("Introduce el número de habitantes: "))
+
+        for hb in datos:
+            if hb["Población"]<num_habitantes:
+                print(hb['Municipio'])
+        input("Pulse para continuar...")
+
+    def mostrar_municipio_mayor_habitantes(datos):
+        num_habitantes=int(input("Introduce el número de habitantes: "))
+
+        for hb in datos:
+            if hb["Población"]>num_habitantes:
+                print(hb['Municipio'])
+        input("Pulse para continuar...")
 
 #abro el fichero json en el que se van a encontrar los municipios de Castilla y León
     base_path = Path(__file__).parent
@@ -32,8 +74,8 @@ try:
         print("4. Mostrar Municipios pertenecientes a una Mancomunidad")
         print("5. Número de Municipios de una Provincia")
         print("6. Mostrar Municipios con menor número de habitantes")
-        print("6. Mostrar Municipios con mayor número de habitantes")
-        print("7. Salir")
+        print("7. Mostrar Municipios con mayor número de habitantes")
+        print("8. Salir")
 
         opc = int(input("Seleccione una opción: "))
         #Ahora se deben de especificar las diferentes opciones
@@ -41,12 +83,18 @@ try:
             #mostrar_coordenadas()
             print("En obras")
         elif opc == 2:
-            mostrar_municipios()
+            mostrar_municipios(datos)
         elif opc == 3:
+            mostrar_provincia(datos)
         elif opc == 4:
+            mostrar_municipios_mancomunidad(datos)
         elif opc == 5:
+            num_municipios(datos)
         elif opc == 6:
+            mostrar_municipio_menor_habitantes(datos)
         elif opc == 7:
+            mostrar_municipio_mayor_habitantes(datos)
+        elif opc == 8:
             print("Gracias por su visita")
             break
         else:
